@@ -130,8 +130,11 @@ p {
   }
 }
 @media (max-width: 667px) {
-  .categories {
-    display: none;
+  .category-button {
+    font-size: 10px;
+    padding: 3px;
+    margin-right: 2px !important;
+    margin-left: 2px !important;
   }
   .new-products .cards,
   .bestsellers .all,
