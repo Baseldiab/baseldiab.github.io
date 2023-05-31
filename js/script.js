@@ -1,7 +1,9 @@
 // =========================================
 $(function () {
   loadScript("js/categories.js", categoriesSetUp);
-  loadScript("js/products.js", productsSetUp);
+  loadScript("js/products.js", productsInfo);
+  loadScript("js/cart.js", cartInfo);
+  loadScript("js/wish.js", wishInfo);
 });
 // =========================================
 $.get("../template/navigation.html", function (data) {
@@ -12,7 +14,7 @@ $.get("../template/footer.html", function (data) {
   $("#footer-placeholder").replaceWith(data);
 });
 // =========================================
-const productsSetUp = function () {
+const productsInfo = function () {
   let products = new Products();
 
   if ($(".new-products").length) {
@@ -25,6 +27,16 @@ const productsSetUp = function () {
   }
 };
 // =========================================
+const cartInfo = function () {
+  let cart = new Cart();
+  cart.getProductToCart();
+};
+// =========================================
+const wishInfo = function () {
+  let wish = new Wish();
+  wish.getProductToWish();
+};
+// =========================================
 const categoriesSetUp = function () {
   let categories = new Categories();
 
@@ -34,7 +46,6 @@ const categoriesSetUp = function () {
     categories.getSingleCategory(decodeURIComponent(urlParam("category")));
   }
 };
-
 // =========================================
 function loadScript(url, callback) {
   var head = document.head;
@@ -63,8 +74,55 @@ function urlParam(name) {
   }
 }
 
+// ===============================CART FUNCTIONS=================================
+let productsArray = [];
+let quant = 0;
 // =========================================
-
+function minusQuantity() {
+  $(".cart__box").html(Math.abs(quant));
+}
+// =========================================
+const readFromStorage = (key = `products`) =>
+  JSON.parse(localStorage.getItem(key)) || [];
 //===================================
-
+const writeToStorage = (data, key = `products`) =>
+  localStorage.setItem(key, JSON.stringify(data));
 // =========================================
+// remove item product cart
+function deleteElement(id, i) {
+  $("#" + id).remove();
+  let all = readFromStorage("cart");
+  all.splice(i, 1);
+  writeToStorage(all, "cart");
+  location.reload();
+}
+// =================================
+function addToCart(id, ele) {
+  // alert(id);
+  console.log(id);
+  productsArray.push(id);
+  writeToStorage(productsArray, "cart");
+  const myCart = readFromStorage("cart");
+  $("#cartCount").html(myCart.length);
+  $(ele).attr("disabled", "disabled");
+}
+// =================================
+// ===============================WISH FUNCTIONS=================================
+// =========================================
+// remove item product cart
+function deleteElement(id, i) {
+  $("#" + id).remove();
+  let all = readFromStorage("wish");
+  all.splice(i, 1);
+  writeToStorage(all, "wish");
+  location.reload();
+}
+// =================================
+function addToWish(id, ele) {
+  // alert(id);
+  console.log(id);
+  productsArray.push(id);
+  writeToStorage(productsArray, "wish");
+  $(ele).attr("disabled", "disabled");
+}
+// =================================

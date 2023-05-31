@@ -258,6 +258,33 @@ p {
   width: 100%;
   height: 80vh;
 }
+
+/* ===================cart============================== */
+.cart__box {
+  height: 25px;
+  width: 25px;
+}
+@media (max-width: 576px) {
+  .cart .container {
+    width: 100%;
+    padding: 0;
+  }
+  .cart__head th,
+  .cart__content td,
+  .cart__content td .fs-6,
+  .cart__price {
+    font-size: 10px;
+  }
+  .cart__box {
+    height: 15px;
+    width: 15px;
+  }
+  .cart__confirm {
+    padding: 2px;
+    font-size: 10px;
+  }
+}
+
 /* ===================footer============================== */
 .footer__top .fs-6,
 .footer__copy {

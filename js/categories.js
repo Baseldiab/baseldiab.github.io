@@ -76,8 +76,8 @@ class Categories {
   getSingleCategory(slug) {
     fetch(this.apiUrl + "products/category/" + slug)
       .then((res) => res.json())
-      .then(function (data) {
-        $(data).each(function (index, product) {
+      .then(function (data, index) {
+        $(data).each(function (i, product) {
           // ====================================
           // category name
           $(".category-name").html(toTitleCase(product.category));
@@ -99,7 +99,7 @@ class Categories {
               product.image +
               '" alt =' +
               product.title +
-              ' > </img ></a><div class="d-flex justify-content-center align-items-center" ><a class="text-decoration-none" href="../product.html? productid=' +
+              ' > </img ></a><div class="d-flex justify-content-center align-items-center" ><a class="text-decoration-none" href="../product.html?productid=' +
               encodeURIComponent(product.id) +
               '">' +
               '<h5 class="card-title text-center fs-5 fw-bold text-dark mt-md-2 mt-0" > ' +
@@ -110,9 +110,13 @@ class Categories {
               "</p >" +
               "<p class=' card-text text-danger text-center ' > <span>$</span> " +
               product.price.toFixed(2) +
-              '</p></div> </a><div class=" d-flex justify-content-center align-items-center my-0 my-md-3 text-center products__buttons"><button class="btn btn-success mx-2 my-md-1 my-0 product__button">' +
-              "Add To Cart </button>" +
-              '<button class="btn btn-primary my-md-1 my-0 mx-2 product__button">' +
+              '</p></div> </a><div class=" d-flex justify-content-center align-items-center my-0 my-md-3 text-center products__buttons"><button class="btn btn-success mx-2 my-md-1 my-0 product__button cart-button" onclick="addToCart(' +
+              product.id +
+              ', this)">' +
+              " Add To Cart </button>" +
+              '<button class="btn btn-primary my-md-1 my-0 mx-2 product__button wish-button " onclick="addToWish(' +
+              product.id +
+              ',this)">' +
               " Add To Wishlist " +
               '</button></div><div class="card-footer position-absolute bottom-0  w-100 text-center">' +
               '<small class="text-body-secondary">Last updated 3 days ago</small></div></div></div>'

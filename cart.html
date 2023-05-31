@@ -19,8 +19,86 @@
   </head>
 
   <body>
-    <div id="navigation-placeholder"></div>
-    <div id="footer-placeholder"></div>
+    <main class="cart">
+      <div id="navigation-placeholder"></div>
+      <section class="py-4 bg-body-bg cart">
+        <div class="container">
+          <div class="cart__cards">
+            <table class="table table-striped chosen__products">
+              <thead class="cart__head">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col " class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody class="cart__content"></tbody>
+              <tfoot>
+                <tr class="table-secondary">
+                  <td colspan=" 2" class="fw-bold">Total</td>
+                  <td colspan="1" class="fw-bolder cart__price">
+                    $<span class="cart__total-Price">0</span>
+                  </td>
+                  <td colspan="2" class="text-center">
+                    <button
+                      type="button"
+                      class="btn btn-success text-uppercase cart__confirm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      Confirm Order
+                    </button>
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="exampleModal"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1
+                              class="modal-title fs-5 text-danger fw-bold"
+                              id="exampleModalLabel"
+                            >
+                              successfully placed the order
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            Thank for ordering. We received your order and will
+                            begin processing it soon.
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+      <div id="footer-placeholder"></div>
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
