@@ -103,10 +103,14 @@ function addToCart(id, ele) {
   productsArray.push(id);
   writeToStorage(productsArray, "cart");
   const myCart = readFromStorage("cart");
-  $("#cartCount").html(myCart.length);
+  $(".cartCount").html(myCart.length);
   $(ele).attr("disabled", "disabled");
 }
 // =================================
+// Update price
+
+function basel() {}
+
 // ===============================WISH FUNCTIONS=================================
 // =========================================
 // remove item product cart

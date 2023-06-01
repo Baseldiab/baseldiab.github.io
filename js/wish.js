@@ -25,7 +25,7 @@ class Wish {
               product[0].title +
               '</td><td class="text-danger fw-bold my-auto">' +
               " $" +
-              product[0].price +
+              product[0].price.toFixed(2) +
               "</td>" +
               "<td> " +
               '<div class="d-flex justify-content-center align-items-center ' +

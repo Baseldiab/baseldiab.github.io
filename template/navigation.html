@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg w-100 py-3">
+<nav class="navbar navbar-expand-lg w-100 py-3 nav__top">
   <div class="container">
     <a
       href="/index.html"
@@ -46,21 +46,50 @@
         <li class="nav-item px-2">
           <a class="nav-link fw-medium" href="../contact.html">Contact</a>
         </li>
-        <li class="nav-item px-2 wish">
+        <li class="nav-item px-2 nav__wish">
           <a href="../wish.html"
             ><i class="fa-solid fa-heart fa-2x text-danger"></i></a>
         </li>
       </ul>
-      <div class="cart position-relative">
+      <div class="nav__cart position-relative">
         <a href="../cart.html"
           ><i class="fa-solid fa-cart-plus fa-2x text-danger"></i>
           <span
-            id="cartCount"
-            class="badge position-absolute bottom-50 start-50 bg-primary ms-2"
+            class="badge position-absolute bottom-50 start-50 bg-primary ms-2 cartCount"
           ></span
         ></a>
       
       <!-- =================================== -->
     </div>
   </div>
+</nav>
+
+<nav class="navbar fixed-bottom nav__bottomSmallScreen  d-none">
+  <form class="container justify-content-between">
+    <!-- ================= -->
+    <button class="btn btn-outline-danger border-0 me-md-2 me-0 px-md-2 p-0 position-relative" type="button"><a href="../index.html"
+      >
+      <i class="fa-solid fa-house fa-2x text-danger"></i>
+    </a></button>
+    <!-- ================= -->
+    <button class="btn btn-outline-danger border-0 me-md-2 me-0 px-md-2 p-0 position-relative" type="button"><a href="../cart.html"
+      ><i class="fa-solid fa-cart-plus fa-2x text-danger"></i>
+      <span
+        class="badge position-absolute bottom-50 start-50 bg-primary ms-2 cartCount"
+      ></span
+    ></a></button>
+    <!-- ================= -->
+    <button class="btn btn-outline-danger border-0 me-md-2 me-0 px-md-2 p-0" type="button"><a href="../wish.html"
+      ><i class="fa-solid fa-heart fa-2x text-danger"></i></a></button>
+      <!-- ================ -->
+      <!-- Default dropup button -->
+   <div class="btn-group dropup">
+  <button type="button" class="btn btn-outline-danger border-0 me-md-2 me-0 px-md-2 p-0 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fa-solid fa-arrow-up-short-wide fa-2x"></i>
+  </button>
+  <ul class="dropdown-menu categories__navbar nav__bottomSmallScreen-list">
+    <!-- Dropdown menu links -->
+  </ul>
+</div>
+  </form>
 </nav>
