@@ -109,8 +109,6 @@ function addToCart(id, ele) {
 // =================================
 // Update price
 
-function basel() {}
-
 // ===============================WISH FUNCTIONS=================================
 // =========================================
 // remove item product cart

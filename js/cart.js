@@ -10,6 +10,7 @@ class Cart {
         const items = readFromStorage("cart");
         let cartProducts = [];
         let totalPrice = 0;
+        let siglll = 0;
         //
         for (let i = 0; i < items.length; i++) {
           const item = data.filter((product, index) => product.id == items[i]);
@@ -18,6 +19,7 @@ class Cart {
         // console.log(cartProducts);
         $(cartProducts).each(function (i, product) {
           const count = i + 1;
+          siglll = product[0].price;
           // =========================================================
           // let singlePrice = product[0].id;
           $(".cart__content").append(
@@ -28,14 +30,13 @@ class Cart {
               '</th><td class= "fs-6 w-50" >' +
               product[0].title +
               '</td><td class="text-danger fw-bold my-auto  cart__singlePrice  ' +
+              '"> ' +
               product[0].price +
-              '" > ' +
-              product[0].price.toFixed(2) +
               " " +
               // quantity======================
-              '</td><td class= "quantity"></i><input type="number" id="quantity"  name="quantity" min="1" value="1" class="cart__box border rounded border-danger text-danger fw-bold  text-center  ' +
-              product[0].id +
-              '">' +
+              '</td><td class= "quantity"></i><input type="number" id="quantity"  name="quantity" min="1" value="1" class="cart__box border rounded border-danger text-danger fw-bold  text-center onchange=(' +
+              product[0].price +
+              ')" >' +
               "</td><td> " +
               '<div class="d-flex justify-content-center align-items-center ' +
               // buttons======================
@@ -52,19 +53,26 @@ class Cart {
           );
 
           // ===================================================
-          // single price
-
           // Total price
           totalPrice += product[0].price;
         });
 
         // ===================================================
-        // Update price in cart
-        // $(".cart__singlePrice").html("$" + si);
-        // =======
         // Calculate total price
         $(".cart__price").html("$ " + totalPrice.toFixed(2));
-        // ===================================================
+        // ====================================================
+        $(".cart__box").on("change", function () {
+          let count = Number($(this).val());
+          // alert(count);
+          $(".cart__box").each(function () {
+            $(".cart__singlePrice").each(function (e, i) {
+              let price = Number($(this).html());
+              let singlePrice = price * count;
+              $(this).html(singlePrice.toFixed(2));
+            });
+            // alert(singlePrice);
+          });
+        });
         // ====================================================
         // number of cart product in the navbar
         $(".cartCount").html(cartProducts.length);
@@ -72,6 +80,5 @@ class Cart {
   }
 
   // =========================================================================
-  getCartItems() {}
   // ====================================================================================
 }

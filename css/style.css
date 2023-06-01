@@ -85,7 +85,12 @@ p {
 }
 @media (max-width: 576px) {
   .nav__bottomSmallScreen .fa-2x {
-    font-size: 0.8em !important;
+    font-size: 1.5em !important;
+  }
+}
+@media (max-width: 768px) {
+  .cartCount {
+    left: 16px !important;
   }
 }
 /* ======================Category========================== */
