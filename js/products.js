@@ -35,7 +35,9 @@ class Products {
               product.id +
               ', this)">' +
               "Add To Cart </button>" +
-              '<button class="btn btn-primary my-md-1 my-0 mx-2 product__button wish-button"  onclick="addToWish('+product.id+',this)">' +
+              '<button class="btn btn-primary my-md-1 my-0 mx-2 product__button wish-button"  onclick="addToWish(' +
+              product.id +
+              ',this)">' +
               " Add To Wishlist " +
               '</button></div><div class="card-footer border  position-absolute bottom-0  w-100 text-center">' +
               '<small class="text-body-secondary ">Last updated 3 days ago</small></div></div></div>'
@@ -78,7 +80,9 @@ class Products {
               product.id +
               ', this)">' +
               "Add To Cart </button>" +
-              '<button class="btn btn-primary my-md-1 my-0 mx-2 product__button wish-button" onclick="addToWish('+product.id+',this)">' +
+              '<button class="btn btn-primary my-md-1 my-0 mx-2 product__button wish-button" onclick="addToWish(' +
+              product.id +
+              ',this)">' +
               " Add To Wishlist " +
               '</button></div><div class="card-footer position-absolute bottom-0  w-100 text-center">' +
               '<small class="text-body-secondary">Last updated 3 days ago</small></div></div></div>'
@@ -117,12 +121,17 @@ class Products {
         // ====================================
         $(".singleProduct__price").html("$" + data.price.toFixed(2));
         // ====================================
-        // add product to localStorage
-        $(".cart-button").click(function () {
-          const allCarts = readFromStorage("products");
-          allCarts.push(data);
-          writeToStorage(allCarts, "products");
-        });
+        $(".products__buttons").html(
+          '<button class="btn btn-success mx-2 my-md-1 my-0 product__button cart-button" onclick="addToCart(' +
+            data.id +
+            ', this)">' +
+            "Add To Cart </button>" +
+            '<button class="btn btn-primary my-md-1 my-0 mx-2 product__button wish-button" onclick="addToWish(' +
+            data.id +
+            ',this)">' +
+            " Add To Wishlist " +
+            "</button>"
+        );
       },
     });
   }

@@ -76,7 +76,7 @@ function urlParam(name) {
 
 // ===============================CART FUNCTIONS=================================
 let productsArray = [];
-let quant = 0;
+let quant = 1;
 // =========================================
 function minusQuantity() {
   $(".cart__box").html(Math.abs(quant));
@@ -89,7 +89,7 @@ const writeToStorage = (data, key = `products`) =>
   localStorage.setItem(key, JSON.stringify(data));
 // =========================================
 // remove item product cart
-function deleteElement(id, i) {
+function deleteCartElement(id, i) {
   $("#" + id).remove();
   let all = readFromStorage("cart");
   all.splice(i, 1);
@@ -110,7 +110,7 @@ function addToCart(id, ele) {
 // ===============================WISH FUNCTIONS=================================
 // =========================================
 // remove item product cart
-function deleteElement(id, i) {
+function deleteWishElement(id, i) {
   $("#" + id).remove();
   let all = readFromStorage("wish");
   all.splice(i, 1);

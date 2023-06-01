@@ -60,6 +60,11 @@ p {
   --bs-dropdown-link-hover-color: #fff;
   --bs-dropdown-link-hover-bg: var(--main-color);
 }
+@media (max-width: 990px) {
+  #cartCount {
+    left: 22px !important;
+  }
+}
 /* ======================Category========================== */
 .category-img {
   filter: brightness(0.6) blur(3px);

@@ -10,6 +10,7 @@ class Cart {
         const items = readFromStorage("cart");
         let cartProducts = [];
         let totalPrice = 0;
+        let singlePrice = 0;
         for (let i = 0; i < items.length; i++) {
           const item = data.filter((product, index) => product.id == items[i]);
           cartProducts.push(item);
@@ -18,6 +19,9 @@ class Cart {
         $(cartProducts).each(function (i, product) {
           const count = i + 1;
 
+          // =========================================================
+
+          console.log(quant);
           $(".cart__content").append(
             '<tr id="' +
               product[0].id +
@@ -25,21 +29,23 @@ class Cart {
               count +
               '</th><td class= "fs-6 w-50" >' +
               product[0].title +
-              '</td><td class="text-danger fw-bold my-auto">' +
+              '</td><td class="text-danger fw-bold my-auto  cart__singlePrice">' +
               " $" +
               product[0].price +
+              // quantity======================
               '</td><td class= "quantity"><i class="fa-solid fa-plus cart__plus" data-idPlus =.' +
               product[0].id +
               '></i><span class="cart__box d-inline-block mx-2 border rounded border-danger bg-danger text-light text-center  ' +
               product[0].id +
-              '">0' +
+              '">1' +
               '</span><i class="fa-solid fa-minus cart__minus" data-idMinus=.' +
               product[0].id +
               " ></i></td> " +
               "</td><td> " +
               '<div class="d-flex justify-content-center align-items-center ' +
+              // buttons======================
               ' text-center products__buttons"> ' +
-              '<button id="cart__closeButton" class="btn btn-danger mx-2  product__button" onclick="deleteElement(' +
+              '<button id="cart__closeButton" class="btn btn-danger mx-2  product__button" onclick="deleteCartElement(' +
               (product[0].id, i) +
               ')"> ' +
               '<i class="fa-solid fa-xmark"></i></button>' +
@@ -50,12 +56,12 @@ class Cart {
 
           // ===================================================
           // Total price
+          singlePrice = product[0].price * quant;
           totalPrice += product[0].price;
         });
         // ===================================================
         // Calculate total price
         $(".cart__total-Price").html(totalPrice);
-
         // ===================================================
         // add one more quantity of any cart product
         $(".cart__plus").click(function () {
@@ -71,9 +77,7 @@ class Cart {
         // minus one more quantity of any cart product
         $(".cart__minus").click(function () {
           if ($(this).attr("data-idMinus")) {
-            if (!quant > 0) {
-              quant = 0;
-            } else {
+            if (quant > 1) {
               quant--;
               let idMinus = $($(this).attr("data-idMinus"));
               idMinus.each((i, el) => {

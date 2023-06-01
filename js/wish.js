@@ -30,7 +30,7 @@ class Wish {
               "<td> " +
               '<div class="d-flex justify-content-center align-items-center ' +
               ' text-center products__buttons"> ' +
-              '<button id="cart__closeButton" class="btn btn-danger mx-2  product__button" onclick="deleteElement(' +
+              '<button id="cart__closeButton" class="btn btn-danger mx-2  product__button" onclick="deleteWishElement(' +
               (product[0].id, i) +
               ')"> ' +
               '<i class="fa-solid fa-xmark"></i></button>' +
