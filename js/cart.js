@@ -29,14 +29,17 @@ class Cart {
               count +
               '</th><td class= "fs-6 w-50" >' +
               product[0].title +
-              '</td><td class="text-danger fw-bold my-auto  cart__singlePrice  ' +
+              '</td><td class="text-danger fw-bold my-auto  cart__singlePrice ' +
+              product[0].price.toFixed(0) +
               '"> ' +
-              product[0].price +
+              product[0].price.toFixed(2) +
               " " +
               // quantity======================
-              '</td><td class= "quantity"></i><input type="number" id="quantity"  name="quantity" min="1" value="1" class="cart__box border rounded border-danger text-danger fw-bold  text-center onchange=(' +
-              product[0].price +
-              ')" >' +
+              '</td><td class= "quantity"></i><input type="number" id="quantity"  name="quantity" min="1" value="1" class="cart__box border rounded border-danger text-danger fw-bold  text-center " data-singlePrice=' +
+              product[0].price.toFixed(2) +
+              " data-price=." +
+              product[0].price.toFixed(0) +
+              " >" +
               "</td><td> " +
               '<div class="d-flex justify-content-center align-items-center ' +
               // buttons======================
@@ -51,27 +54,38 @@ class Cart {
               ' <i class="fa-solid fa-heart"></i> ' +
               "</button></div> </td></tr>"
           );
-
           // ===================================================
           // Total price
           totalPrice += product[0].price;
+          // ====================================================
         });
-
         // ===================================================
         // Calculate total price
+        console.log(totalPrice);
         $(".cart__price").html("$ " + totalPrice.toFixed(2));
+
         // ====================================================
+        // Update price by quantity
         $(".cart__box").on("change", function () {
+          // alert(pri);
+          let coun = $($(this).attr("data-price"));
+          let singlePrice = $(this).attr("data-singlePrice");
+          // alert(singlePrice);
           let count = Number($(this).val());
-          // alert(count);
-          $(".cart__box").each(function () {
-            $(".cart__singlePrice").each(function (e, i) {
-              let price = Number($(this).html());
-              let singlePrice = price * count;
-              $(this).html(singlePrice.toFixed(2));
-            });
-            // alert(singlePrice);
+          // console.log($(this).attr("data-price"));
+          let price = singlePrice * count;
+          $(coun).html(price.toFixed(2));
+          // ===========
+          // total price update
+          let total = 0;
+          let allPrices = $(".cart__singlePrice");
+          allPrices.each((i, el) => {
+            // console.log($(el).html());
+            total += Number($(el).html());
           });
+          // console.log(allPrices);
+          console.log(total);
+          $(".cart__price").html("$ " + total.toFixed(2));
         });
         // ====================================================
         // number of cart product in the navbar
